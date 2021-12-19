@@ -6,9 +6,9 @@ import Axios from 'axios';
 import Card from './components/Card';
 
 const Finance = () => {
-   const id = localStorage.getItem('member_id');
-   const name = localStorage.getItem('name');
-   const status = localStorage.getItem('status');
+   // const id = localStorage.getItem('member_id');
+   // const name = localStorage.getItem('name');
+   // const status = localStorage.getItem('status');
    const chapter = localStorage.getItem('chapter');
    const [list, setList] = useState([]);
    const [total_donation, setDonation] = useState();
@@ -41,14 +41,14 @@ const Finance = () => {
 
    useEffect(() => {
       Axios.get(
-         `http://localhost:5000/payment/get_transaction/${chapter}`
+         `https://rotaractzc-backend.herokuapp.com/payment/get_transaction/${chapter}`
       ).then((response) => {
          if (response) {
             setList(response.data);
          }
       });
 
-      Axios.get(`http://localhost:5000/web/funds_chapter`, {
+      Axios.get(`https://rotaractzc-backend.herokuapp.com/web/funds_chapter`, {
          params: {
             chapter: chapter,
          },

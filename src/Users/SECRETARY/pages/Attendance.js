@@ -12,13 +12,13 @@ function Attendance() {
 
    //Display all data
    useEffect(() => {
-      Axios.get(`http://localhost:5000/sect/byChapter/${chapter}`).then(
-         (response) => {
-            if (response) {
-               setData(response.data);
-            }
+      Axios.get(
+         `https://rotaractzc-backend.herokuapp.com/sect/byChapter/${chapter}`
+      ).then((response) => {
+         if (response) {
+            setData(response.data);
          }
-      );
+      });
    });
 
    return (

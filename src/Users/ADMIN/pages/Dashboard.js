@@ -43,22 +43,28 @@ const Dashboard = () => {
    const [funds, setFunds] = useState([]);
 
    useEffect(() => {
-      Axios.get('http://localhost:5000/web/totalMembers').then((response) => {
+      Axios.get(
+         'https://rotaractzc-backend.herokuapp.com/web/totalMembers'
+      ).then((response) => {
          if (response) {
             setData(response.data);
          }
       });
-      Axios.get('http://localhost:5000/web/funds').then((response) => {
-         if (response) {
-            setFunds(response.data);
+      Axios.get('https://rotaractzc-backend.herokuapp.com/web/funds').then(
+         (response) => {
+            if (response) {
+               setFunds(response.data);
+            }
          }
-      });
+      );
 
-      Axios.get(`http://localhost:5000/events/all`, {}).then((result) => {
-         if (result) {
-            setList(result.data);
+      Axios.get(`https://rotaractzc-backend.herokuapp.com/events/all`, {}).then(
+         (result) => {
+            if (result) {
+               setList(result.data);
+            }
          }
-      });
+      );
    }, []);
 
    return (

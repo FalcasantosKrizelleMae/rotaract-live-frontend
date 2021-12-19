@@ -24,7 +24,7 @@ function Profile() {
    const [list, setList] = useState([]);
 
    const updatePass = (id) => {
-      Axios.put(`http://localhost:5000/admin/update_pass`, {
+      Axios.put(`https://rotaractzc-backend.herokuapp.com/admin/update_pass`, {
          oldPassword: oldPassword,
          newPassword: newPassword,
          member_id: id,
@@ -47,27 +47,30 @@ function Profile() {
    };
 
    useEffect(() => {
-      Axios.get(`http://localhost:5000/auth/get_user/${id}`).then(
-         (response) => {
-            if (response) {
-               setList(response.data);
-            }
+      Axios.get(
+         `https://rotaractzc-backend.herokuapp.com/auth/get_user/${id}`
+      ).then((response) => {
+         if (response) {
+            setList(response.data);
          }
-      );
-      Axios.get(`http://localhost:5000/payment/get_payment/${chapter}`).then(
-         (response) => {
-            if (response) {
-               // console.log(response.data);
-               setDataList(response.data);
-            }
+      });
+      Axios.get(
+         `https://rotaractzc-backend.herokuapp.com/payment/get_payment/${chapter}`
+      ).then((response) => {
+         if (response) {
+            // console.log(response.data);
+            setDataList(response.data);
          }
-      );
+      });
 
-      Axios.get(`http://localhost:5000/payment/get_transaction`, {
-         params: {
-            member_id: id,
-         },
-      })
+      Axios.get(
+         `https://rotaractzc-backend.herokuapp.com/payment/get_transaction`,
+         {
+            params: {
+               member_id: id,
+            },
+         }
+      )
          .then((response) => {
             if (response) {
                // console.log(response.data);
@@ -190,7 +193,7 @@ function Profile() {
       ),
    };
 
-   const [activeTabKey, setActiveTabKey] = useState('transactions');
+   const [activeTabKey, setActiveTabKey] = useState('account');
 
    const onTabChange = (key) => {
       setActiveTabKey(key);

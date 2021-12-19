@@ -17,17 +17,17 @@ const Reports = () => {
 
    //Display all data
    useEffect(() => {
-      Axios.get(`http://localhost:5000/reports/chapter/${chapter}`).then(
-         (response) => {
-            if (response) {
-               setList(response.data);
-            }
+      Axios.get(
+         `https://rotaractzc-backend.herokuapp.com/reports/chapter/${chapter}`
+      ).then((response) => {
+         if (response) {
+            setList(response.data);
          }
-      );
+      });
    });
 
    const sent = (report_id) => {
-      Axios.post(`http://localhost:5000/reports/sent`, {
+      Axios.post(`https://rotaractzc-backend.herokuapp.com/reports/sent`, {
          report_id: report_id,
       }).then((response) => {
          if (response) {

@@ -62,7 +62,9 @@ function Accounts() {
    };
 
    const getData = (id) => {
-      Axios.get(`http://localhost:5000/admin/getData/${id}`).then((result) => {
+      Axios.get(
+         `https://rotaractzc-backend.herokuapp.com/admin/getData/${id}`
+      ).then((result) => {
          setNewDataList({
             newmember_id: result.data[0].member_id,
             newfirstname: result.data[0].first_name,
@@ -80,7 +82,7 @@ function Accounts() {
    const { handleSubmit } = useForm();
 
    const onSubmit = (data) => {
-      Axios.post('http://localhost:5000/admin/add_account', {
+      Axios.post('https://rotaractzc-backend.herokuapp.com/admin/add_account', {
          member_id: member_id,
          qrcode: qrcode,
          firstName: firstName,
@@ -130,7 +132,7 @@ function Accounts() {
 
    const updateAccount = (id) => {
       Axios.put(
-         `http://localhost:5000/admin/update_account/${id}`,
+         `https://rotaractzc-backend.herokuapp.com/admin/update_account/${id}`,
          dataList
       ).then((response) => {
          if (response.data.message === 'success') {
@@ -163,7 +165,7 @@ function Accounts() {
          /* Read more about isConfirmed, isDenied below */
          if (result.isConfirmed) {
             Axios.delete(
-               `http://localhost:5000/admin/delete_account/${id}`
+               `https://rotaractzc-backend.herokuapp.com/admin/delete_account/${id}`
             ).then((response) => {
                if (response.data.message === 'success') {
                   Swal.fire(
@@ -191,11 +193,13 @@ function Accounts() {
 
    //Display all data
    useEffect(() => {
-      Axios.get('http://localhost:5000/admin/list').then((response) => {
-         if (response) {
-            setList(response.data);
+      Axios.get('https://rotaractzc-backend.herokuapp.com/admin/list').then(
+         (response) => {
+            if (response) {
+               setList(response.data);
+            }
          }
-      });
+      );
    });
 
    function clear(e) {

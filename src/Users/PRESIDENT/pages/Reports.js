@@ -11,11 +11,13 @@ const Reports = () => {
 
    //Display all data
    useEffect(() => {
-      Axios.get(`http://localhost:5000/reports/all`).then((response) => {
-         if (response) {
-            setList(response.data);
+      Axios.get(`https://rotaractzc-backend.herokuapp.com/reports/all`).then(
+         (response) => {
+            if (response) {
+               setList(response.data);
+            }
          }
-      });
+      );
    });
 
    const decline = (report_id) => {
@@ -26,9 +28,12 @@ const Reports = () => {
          denyButtonText: `No`,
       }).then((result) => {
          if (result.isConfirmed) {
-            Axios.post(`http://localhost:5000/reports/decline`, {
-               report_id: report_id,
-            }).then((response) => {
+            Axios.post(
+               `https://rotaractzc-backend.herokuapp.com/reports/decline`,
+               {
+                  report_id: report_id,
+               }
+            ).then((response) => {
                if (response.data.message === 'success') {
                   Swal.fire({
                      title: 'Report declined',
@@ -59,9 +64,12 @@ const Reports = () => {
          denyButtonText: `No`,
       }).then((result) => {
          if (result.isConfirmed) {
-            Axios.post(`http://localhost:5000/reports/accept`, {
-               report_id: report_id,
-            }).then((response) => {
+            Axios.post(
+               `https://rotaractzc-backend.herokuapp.com/reports/accept`,
+               {
+                  report_id: report_id,
+               }
+            ).then((response) => {
                if (response.data.message === 'success') {
                   Swal.fire({
                      title: 'Success!',

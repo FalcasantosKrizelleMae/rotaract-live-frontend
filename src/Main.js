@@ -8,11 +8,13 @@ export default function Main() {
 
    Axios.defaults.withCredentials = true;
    useEffect(() => {
-      Axios.get('http://localhost:5000/api/login').then((response) => {
-         if (response.data.loggeIn === true) {
-            setRole(response.data.user[0].role);
+      Axios.get('https://rotaractzc-backend.herokuapp.com/api/login').then(
+         (response) => {
+            if (response.data.loggeIn === true) {
+               setRole(response.data.user[0].role);
+            }
          }
-      });
+      );
    }, []);
 
    return (

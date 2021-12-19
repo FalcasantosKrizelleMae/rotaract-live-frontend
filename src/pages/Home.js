@@ -415,7 +415,10 @@ function Home() {
             </div>
          </div>
          <div className="gallery" id="gallery">
-            <div style={{ textAlign: 'center' }} className="container mb-5 mt-5 pt-5 rounded">
+            <div
+               style={{ textAlign: 'center' }}
+               className="container mb-5 mt-5 pt-5 rounded"
+            >
                <Carousel
                   data={data}
                   time={2000}
@@ -445,9 +448,10 @@ function Home() {
          <div class="footer pt-5 mt-5 bg-light">
             <footer>
                <div class="row ">
-                
                   <div class="m-5 p-5 col-lg-6 ">
-                     <h4 className="text-uppercase text-bold mb-5">Rotaract Zamboanga City Chapter</h4>
+                     <h4 className="text-uppercase text-bold mb-5">
+                        Rotaract Zamboanga City Chapter
+                     </h4>
                      <p class="col-lg-7">
                         Rotaract clubs bring together people ages 18 and older,
                         Zamboanga City has a total of 8 Rotaract Clubs, which

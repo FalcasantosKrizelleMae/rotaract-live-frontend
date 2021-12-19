@@ -46,11 +46,14 @@ const Payments = () => {
 
    //SET PAYMENT
    const onSubmit = (data) => {
-      Axios.post('http://localhost:5000/payment/set_payment', {
-         amount: amount,
-         due_date: due,
-         chapter: chapter,
-      })
+      Axios.post(
+         'https://rotaractzc-backend.herokuapp.com/payment/set_payment',
+         {
+            amount: amount,
+            due_date: due,
+            chapter: chapter,
+         }
+      )
          .then((response) => {
             if (response.data.message === 'success') {
                Swal.fire({
@@ -79,7 +82,9 @@ const Payments = () => {
    };
 
    useEffect(() => {
-      Axios.get(`http://localhost:5000/payment/get_payment/${chapter}`)
+      Axios.get(
+         `https://rotaractzc-backend.herokuapp.com/payment/get_payment/${chapter}`
+      )
          .then((response) => {
             if (response) {
                setList(response.data);
@@ -97,7 +102,9 @@ const Payments = () => {
    const getList = () => {
       setShowList(true);
 
-      Axios.get(`http://localhost:5000/payment/get_transaction/${chapter}`)
+      Axios.get(
+         `https://rotaractzc-backend.herokuapp.com/payment/get_transaction/${chapter}`
+      )
          .then((response) => {
             if (response) {
                setDataList(response.data);

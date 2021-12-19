@@ -51,7 +51,7 @@ function Dashboard() {
    const { handleSubmit } = useForm();
 
    const onSubmit = (data) => {
-      Axios.post('http://localhost:5000/events/add_event', {
+      Axios.post('https://rotaractzc-backend.herokuapp.com/events/add_event', {
          title: title,
          start: start,
          end: end,
@@ -107,32 +107,32 @@ function Dashboard() {
          denyButtonText: `No`,
       }).then((result) => {
          if (result.isConfirmed) {
-            Axios.get(`http://localhost:5000/events/cancel_event/${id}`).then(
-               (response) => {
-                  if (response.data.message === 'success') {
-                     Swal.fire({
-                        title: 'Event cancelled!',
-                        icon: 'success',
-                     });
-                     handleClose(true);
-                     window.location.reload(true);
-                  } else if (response.data.message === 'today') {
-                     Swal.fire({
-                        title: 'Error!',
-                        text: "Today's event cannot be cancelled",
-                        icon: 'warning',
-                        confirmButtonText: 'Okay',
-                     });
-                  } else {
-                     Swal.fire({
-                        title: 'Error!',
-                        text: 'Event cannot be cancelled',
-                        icon: 'error',
-                        confirmButtonText: 'Okay',
-                     });
-                  }
+            Axios.get(
+               `https://rotaractzc-backend.herokuapp.com/events/cancel_event/${id}`
+            ).then((response) => {
+               if (response.data.message === 'success') {
+                  Swal.fire({
+                     title: 'Event cancelled!',
+                     icon: 'success',
+                  });
+                  handleClose(true);
+                  window.location.reload(true);
+               } else if (response.data.message === 'today') {
+                  Swal.fire({
+                     title: 'Error!',
+                     text: "Today's event cannot be cancelled",
+                     icon: 'warning',
+                     confirmButtonText: 'Okay',
+                  });
+               } else {
+                  Swal.fire({
+                     title: 'Error!',
+                     text: 'Event cannot be cancelled',
+                     icon: 'error',
+                     confirmButtonText: 'Okay',
+                  });
                }
-            );
+            });
          } else {
             if (result.isDenied) {
                Swal.fire('No action ', '', 'info');
@@ -154,7 +154,7 @@ function Dashboard() {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
                Axios.delete(
-                  `http://localhost:5000/events/delete_event/${id}`
+                  `https://rotaractzc-backend.herokuapp.com/events/delete_event/${id}`
                ).then((response) => {
                   if (response.data.message === 'success') {
                      Swal.fire(`Event successfully deleted`, '', 'success');
@@ -180,7 +180,9 @@ function Dashboard() {
    };
 
    useEffect(() => {
-      Axios.get(`http://localhost:5000/events/${chapter}`).then((response) => {
+      Axios.get(
+         `https://rotaractzc-backend.herokuapp.com/events/${chapter}`
+      ).then((response) => {
          if (response) {
             setEvent(response.data);
          }
@@ -188,13 +190,13 @@ function Dashboard() {
    }, [chapter]);
 
    useEffect(() => {
-      Axios.get(`http://localhost:5000/events/cancelled/${chapter}`).then(
-         (response) => {
-            if (response) {
-               setCancelled(response.data);
-            }
+      Axios.get(
+         `https://rotaractzc-backend.herokuapp.com/events/cancelled/${chapter}`
+      ).then((response) => {
+         if (response) {
+            setCancelled(response.data);
          }
-      );
+      });
    }, [chapter]);
 
    return (

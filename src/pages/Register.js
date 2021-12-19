@@ -18,7 +18,7 @@ function Register() {
    const history = useHistory();
 
    const signUp = () => {
-      Axios.post('http://localhost:5000/auth/api/register', {
+      Axios.post('https://rotaractzc-backend.herokuapp.com/auth/api/register', {
          member_id: member_id,
          password: password,
          role: role,

@@ -29,7 +29,7 @@ function ProfileAdmin() {
    };
 
    const updateAdmin = () => {
-      Axios.put(`http://localhost:5000/admin/update_admin`, {
+      Axios.put(`https://rotaractzc-backend.herokuapp.com/admin/update_admin`, {
          oldPassword: oldPassword,
          newPassword: newPassword,
       }).then((response) => {
@@ -57,9 +57,11 @@ function ProfileAdmin() {
    };
 
    useEffect(() => {
-      Axios.get('http://localhost:5000/admin/getAdmin').then((response) => {
-         setAccount(response.data);
-      });
+      Axios.get('https://rotaractzc-backend.herokuapp.com/admin/getAdmin').then(
+         (response) => {
+            setAccount(response.data);
+         }
+      );
    });
 
    return (

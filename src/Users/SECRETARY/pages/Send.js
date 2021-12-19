@@ -21,7 +21,7 @@ const Send = () => {
    useForm();
 
    useEffect(() => {
-      Axios.get(`http://localhost:5000/reports/get_report`, {
+      Axios.get(`https://rotaractzc-backend.herokuapp.com/reports/get_report`, {
          params: {
             event_id: event_id,
          },

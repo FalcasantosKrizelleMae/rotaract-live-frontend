@@ -12,7 +12,7 @@ const Mail = () => {
    const [file, setFile] = useState();
 
    const sendmail = () => {
-      Axios.post(`http://localhost:5000/reports/send-mail`, {
+      Axios.post(`https://rotaractzc-backend.herokuapp.com/reports/send-mail`, {
          email: email,
          description: description,
          file: __dirname + file.name,

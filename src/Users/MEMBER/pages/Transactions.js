@@ -15,15 +15,17 @@ function Transactions() {
    const id = localStorage.getItem('member_id');
 
    useEffect(() => {
-      Axios.get(`http://localhost:5000/auth/get_user/${id}`).then(
-         (response) => {
-            if (response) {
-               setList(response.data);
-            }
+      Axios.get(
+         `https://rotaractzc-backend.herokuapp.com/auth/get_user/${id}`
+      ).then((response) => {
+         if (response) {
+            setList(response.data);
          }
-      );
+      });
 
-      Axios.get(`http://localhost:5000/payment/get_payment/${chapter}`)
+      Axios.get(
+         `https://rotaractzc-backend.herokuapp.com/payment/get_payment/${chapter}`
+      )
          .then((response) => {
             if (response) {
                // console.log(response.data);

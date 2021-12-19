@@ -28,13 +28,15 @@ const PresDashboard = () => {
    const COLORS = ['darkgrey', '#d91b5c'];
 
    useEffect(() => {
-      Axios.get(`http://localhost:5000/web/selectEvent`).then((response) => {
+      Axios.get(
+         `https://rotaractzc-backend.herokuapp.com/web/selectEvent`
+      ).then((response) => {
          if (response) {
             setData(response.data);
          }
       });
 
-      Axios.get('http://localhost:5000/web/funds_chapter', {
+      Axios.get('https://rotaractzc-backend.herokuapp.com/web/funds_chapter', {
          params: {
             chapter: chapter,
          },
@@ -44,17 +46,20 @@ const PresDashboard = () => {
          }
       });
 
-      Axios.get(`http://localhost:5000/web/total_mem/chapter`, {
-         params: {
-            chapter: chapter,
-         },
-      }).then((response) => {
+      Axios.get(
+         `https://rotaractzc-backend.herokuapp.com/web/total_mem/chapter`,
+         {
+            params: {
+               chapter: chapter,
+            },
+         }
+      ).then((response) => {
          if (response) {
             setTotalMem(response.data[0].total_mem);
          }
       });
 
-      Axios.get(`http://localhost:5000/web/funds_chapter`, {
+      Axios.get(`https://rotaractzc-backend.herokuapp.com/web/funds_chapter`, {
          params: {
             chapter: chapter,
          },

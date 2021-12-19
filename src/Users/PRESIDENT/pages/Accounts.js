@@ -14,13 +14,13 @@ const Accounts = () => {
 
    //Display all data
    useEffect(() => {
-      Axios.get(`http://localhost:5000/admin/list/${chapter}`).then(
-         (response) => {
-            if (response) {
-               setList(response.data);
-            }
+      Axios.get(
+         `https://rotaractzc-backend.herokuapp.com/admin/list/${chapter}`
+      ).then((response) => {
+         if (response) {
+            setList(response.data);
          }
-      );
+      });
    });
 
    return (

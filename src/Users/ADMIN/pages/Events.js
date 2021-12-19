@@ -52,23 +52,26 @@ function Events() {
    const { handleSubmit } = useForm();
 
    const onSubmit = (data) => {
-      Axios.post('http://localhost:5000/events/add_event-admin', {
-         title: title,
-         start: start,
-         end: end,
-         description: description,
-         type: type,
-         platform: platform,
-         link: link,
-         host: host,
-         venue: venue,
-         source: source,
-         total: total,
-         email: email,
-         chairperson: chairperson,
-         preparedby: preparedby,
-         chapter: chapter,
-      })
+      Axios.post(
+         'https://rotaractzc-backend.herokuapp.com/events/add_event-admin',
+         {
+            title: title,
+            start: start,
+            end: end,
+            description: description,
+            type: type,
+            platform: platform,
+            link: link,
+            host: host,
+            venue: venue,
+            source: source,
+            total: total,
+            email: email,
+            chairperson: chairperson,
+            preparedby: preparedby,
+            chapter: chapter,
+         }
+      )
          .then((response) => {
             if (response.data.message === 'success') {
                Swal.fire({
@@ -112,7 +115,7 @@ function Events() {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
                Axios.get(
-                  `http://localhost:5000/events/cancel_event/${id}`
+                  `https://rotaractzc-backend.herokuapp.com/events/cancel_event/${id}`
                ).then((response) => {
                   if (response.data.message === 'success') {
                      Swal.fire({
@@ -160,7 +163,7 @@ function Events() {
          /* Read more about isConfirmed, isDenied below */
          if (result.isConfirmed) {
             Axios.delete(
-               `http://localhost:5000/events/delete_event/${id}`
+               `https://rotaractzc-backend.herokuapp.com/events/delete_event/${id}`
             ).then((response) => {
                if (response.data.message === 'success') {
                   Swal.fire(`Event successfully deleted`, '', 'success');
@@ -216,15 +219,19 @@ function Events() {
    // };
 
    useEffect(() => {
-      Axios.get('http://localhost:5000/events/all').then((response) => {
-         if (response) {
-            setEvent(response.data);
+      Axios.get('https://rotaractzc-backend.herokuapp.com/events/all').then(
+         (response) => {
+            if (response) {
+               setEvent(response.data);
+            }
          }
-      });
+      );
    }, []);
 
    useEffect(() => {
-      Axios.get('http://localhost:5000/events/cancelled').then((response) => {
+      Axios.get(
+         'https://rotaractzc-backend.herokuapp.com/events/cancelled'
+      ).then((response) => {
          if (response) {
             setCancelled(response.data);
          }

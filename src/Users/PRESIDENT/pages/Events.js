@@ -22,23 +22,23 @@ const SectEvent = () => {
          denyButtonText: `No`,
       }).then((result) => {
          if (result.isConfirmed) {
-            Axios.get(`http://localhost:5000/events/decline/${id}`).then(
-               (response) => {
-                  if (response.data.message === 'success') {
-                     Swal.fire({
-                        title: 'Event declined!',
-                        icon: 'success',
-                     });
-                  } else {
-                     Swal.fire({
-                        title: 'Error!',
-                        text: 'Event not successful',
-                        icon: 'error',
-                        confirmButtonText: 'Okay',
-                     });
-                  }
+            Axios.get(
+               `https://rotaractzc-backend.herokuapp.com/events/decline/${id}`
+            ).then((response) => {
+               if (response.data.message === 'success') {
+                  Swal.fire({
+                     title: 'Event declined!',
+                     icon: 'success',
+                  });
+               } else {
+                  Swal.fire({
+                     title: 'Error!',
+                     text: 'Event not successful',
+                     icon: 'error',
+                     confirmButtonText: 'Okay',
+                  });
                }
-            );
+            });
          } else {
             if (result.isDenied) {
                Swal.fire('No action ', '', 'info');
@@ -48,7 +48,9 @@ const SectEvent = () => {
    };
 
    useEffect(() => {
-      Axios.get(`http://localhost:5000/events/pres/${chapter}`)
+      Axios.get(
+         `https://rotaractzc-backend.herokuapp.com/events/pres/${chapter}`
+      )
          .then((response) => {
             if (response) {
                setEvent(response.data);
@@ -67,23 +69,23 @@ const SectEvent = () => {
          denyButtonText: `No`,
       }).then((result) => {
          if (result.isConfirmed) {
-            Axios.get(`http://localhost:5000/events/accept/${id}`).then(
-               (response) => {
-                  if (response.data.message === 'success') {
-                     Swal.fire({
-                        title: 'Request accepted',
-                        icon: 'success',
-                     });
-                  } else {
-                     Swal.fire({
-                        title: 'Error!',
-                        text: 'Unsuccessful',
-                        icon: 'error',
-                        confirmButtonText: 'Okay',
-                     });
-                  }
+            Axios.get(
+               `https://rotaractzc-backend.herokuapp.com/events/accept/${id}`
+            ).then((response) => {
+               if (response.data.message === 'success') {
+                  Swal.fire({
+                     title: 'Request accepted',
+                     icon: 'success',
+                  });
+               } else {
+                  Swal.fire({
+                     title: 'Error!',
+                     text: 'Unsuccessful',
+                     icon: 'error',
+                     confirmButtonText: 'Okay',
+                  });
                }
-            );
+            });
          } else {
             if (result.isDenied) {
                Swal.fire('No action ', '', 'info');

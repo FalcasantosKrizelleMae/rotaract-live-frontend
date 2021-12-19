@@ -7,17 +7,21 @@ const Funds = () => {
    const [list, setList] = useState([]);
 
    useEffect(() => {
-      Axios.get('http://localhost:5000/funds/all').then((response) => {
-         if (response) {
-            setList(response.data);
+      Axios.get('https://rotaractzc-backend.herokuapp.com/funds/all').then(
+         (response) => {
+            if (response) {
+               setList(response.data);
+            }
          }
-      });
+      );
 
-      Axios.get('http://localhost:5000/funds/all').then((response) => {
-         if (response) {
-            setList(response.data);
+      Axios.get('https://rotaractzc-backend.herokuapp.com/funds/all').then(
+         (response) => {
+            if (response) {
+               setList(response.data);
+            }
          }
-      });
+      );
    }, []);
 
    return (

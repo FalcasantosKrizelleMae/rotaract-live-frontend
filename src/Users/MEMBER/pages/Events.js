@@ -11,7 +11,9 @@ const MemEvents = () => {
    const [event, setEvent] = useState([]);
 
    useEffect(() => {
-      Axios.get(`http://localhost:5000/events/${chapter}`).then((response) => {
+      Axios.get(
+         `https://rotaractzc-backend.herokuapp.com/events/${chapter}`
+      ).then((response) => {
          if (response) {
             setEvent(response.data);
          }

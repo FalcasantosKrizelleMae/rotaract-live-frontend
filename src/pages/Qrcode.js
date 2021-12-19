@@ -22,7 +22,7 @@ function Qrcode() {
    const [list, setList] = useState([]);
 
    const onSubmit = (data) => {
-      Axios.post('http://localhost:5000/auth/insert_qr', {
+      Axios.post('https://rotaractzc-backend.herokuapp.com/auth/insert_qr', {
          member_id: member_id,
          qrcode: qrcode,
       }).then((response) => {
@@ -44,11 +44,13 @@ function Qrcode() {
 
    //Display all data
    useEffect(() => {
-      Axios.get('http://localhost:5000/auth/list').then((response) => {
-         if (response) {
-            setList(response.data);
+      Axios.get('https://rotaractzc-backend.herokuapp.com/auth/list').then(
+         (response) => {
+            if (response) {
+               setList(response.data);
+            }
          }
-      });
+      );
    });
 
    const { handleSubmit } = useForm();

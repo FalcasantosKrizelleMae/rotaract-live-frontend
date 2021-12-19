@@ -11,17 +11,18 @@ const AttendanceList = () => {
    const { Panel } = Collapse;
 
    useEffect(() => {
-      Axios.get(`http://localhost:5000/sect/getEvent/${chapter}`, {}).then(
-         (result) => {
-            if (result) {
-               setEvents(result.data);
-            }
+      Axios.get(
+         `https://rotaractzc-backend.herokuapp.com/sect/getEvent/${chapter}`,
+         {}
+      ).then((result) => {
+         if (result) {
+            setEvents(result.data);
          }
-      );
+      });
    });
 
    const getAttendance = (event_id) => {
-      Axios.get(`http://localhost:5000/sect/getAttendance`, {
+      Axios.get(`https://rotaractzc-backend.herokuapp.com/sect/getAttendance`, {
          params: {
             event_id: event_id,
          },

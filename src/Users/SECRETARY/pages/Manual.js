@@ -21,11 +21,14 @@ const Manual = () => {
    const [mark, setMark] = useState('present');
 
    useEffect(() => {
-      Axios.get(`http://localhost:5000/sect/check/${chapter}`, {
-         params: {
-            member_id: member_id,
-         },
-      }).then((response) => {
+      Axios.get(
+         `https://rotaractzc-backend.herokuapp.com/sect/check/${chapter}`,
+         {
+            params: {
+               member_id: member_id,
+            },
+         }
+      ).then((response) => {
          if (response.data.length === 1) {
             setIsTrue(true);
             setStatus('');
@@ -35,7 +38,7 @@ const Manual = () => {
          }
       });
 
-      Axios.get(`http://localhost:5000/sect/getAttendance`, {
+      Axios.get(`https://rotaractzc-backend.herokuapp.com/sect/getAttendance`, {
          params: {
             event_id: event_id,
          },
@@ -47,11 +50,14 @@ const Manual = () => {
    });
 
    const check = () => {
-      Axios.post(`http://localhost:5000/sect/addAttendance`, {
-         member_id: member_id,
-         event_id: event_id,
-         mark: mark,
-      }).then((response) => {
+      Axios.post(
+         `https://rotaractzc-backend.herokuapp.com/sect/addAttendance`,
+         {
+            member_id: member_id,
+            event_id: event_id,
+            mark: mark,
+         }
+      ).then((response) => {
          if (response.data.message === 'success') {
             Swal.fire({
                title: 'Attendance checked!',

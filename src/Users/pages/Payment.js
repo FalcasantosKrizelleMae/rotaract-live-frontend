@@ -56,12 +56,15 @@ export default function Payment() {
             }}
             amount={bal}
             onSuccess={(details, data) => {
-               Axios.post('http://localhost:5000/payment/save_payment', {
-                  details: details,
-                  member_id: member_id,
-                  chapter: chapter,
-                  amount: bal,
-               }).then((response) => {
+               Axios.post(
+                  'https://rotaractzc-backend.herokuapp.com/payment/save_payment',
+                  {
+                     details: details,
+                     member_id: member_id,
+                     chapter: chapter,
+                     amount: bal,
+                  }
+               ).then((response) => {
                   if (response) {
                      history.push('/success');
 

@@ -27,11 +27,14 @@ function Scan() {
    };
 
    const check = () => {
-      Axios.post(`http://localhost:5000/sect/addAttendance`, {
-         member_id: member_id,
-         event_id: event_id,
-         mark: mark,
-      }).then((response) => {
+      Axios.post(
+         `https://rotaractzc-backend.herokuapp.com/sect/addAttendance`,
+         {
+            member_id: member_id,
+            event_id: event_id,
+            mark: mark,
+         }
+      ).then((response) => {
          if (response.data.message === 'success') {
             Swal.fire({
                title: 'Attendance checked!',
@@ -50,33 +53,33 @@ function Scan() {
    };
    //Display all data
    useEffect(() => {
-      Axios.get(`http://localhost:5000/sect/scan/${scanResultWebCam}`).then(
-         (response) => {
-            if (response) {
-               const getchapter = response.data[0].chapter;
+      Axios.get(
+         `https://rotaractzc-backend.herokuapp.com/sect/scan/${scanResultWebCam}`
+      ).then((response) => {
+         if (response) {
+            const getchapter = response.data[0].chapter;
 
-               if (getchapter === chapter) {
-                  setData(response.data);
-                  setMemberId(response.data[0].member_id);
+            if (getchapter === chapter) {
+               setData(response.data);
+               setMemberId(response.data[0].member_id);
 
-                  // Axios.post(`http://localhost:5000/sect/add_attendance`, {
-                  //    event_id: event,
-                  //    member_id: member_id,
-                  // }).then((result) => {});
-               } else {
-                  setData([
-                     {
-                        member_id: 'Invalid QR code',
-                        first_name: '',
-                        last_name: '',
-                     },
-                  ]);
-               }
+               // Axios.post(`http://localhost:5000/sect/add_attendance`, {
+               //    event_id: event,
+               //    member_id: member_id,
+               // }).then((result) => {});
+            } else {
+               setData([
+                  {
+                     member_id: 'Invalid QR code',
+                     first_name: '',
+                     last_name: '',
+                  },
+               ]);
             }
          }
-      );
+      });
 
-      Axios.get(`http://localhost:5000/sect/getAttendance`, {
+      Axios.get(`https://rotaractzc-backend.herokuapp.com/sect/getAttendance`, {
          params: {
             event_id: event_id,
          },
