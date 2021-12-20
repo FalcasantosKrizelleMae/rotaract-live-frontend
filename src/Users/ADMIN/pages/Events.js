@@ -309,7 +309,7 @@ function Events() {
                                        </button>
                                        <h5 className=" text-pink text-uppercase">
                                           {val.title}{' '}
-                                          <button
+                                          {/* <button
                                              className="btn float-end"
                                              onClick={() => {
                                                 cancelEvent(val.event_id);
@@ -318,8 +318,8 @@ function Events() {
                                              data-for="updateEvent"
                                           >
                                              <BiIcons.BiEditAlt />
-                                          </button>
-                                          {/* Update */}
+                                          </button> */}
+                                          Update
                                        </h5>
                                        <ReactTooltip
                                           id="updateEvent"

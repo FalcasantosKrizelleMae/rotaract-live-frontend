@@ -23,6 +23,7 @@ const PresDashboard = () => {
    const [funds, setFunds] = useState([]);
    const [expenses, setExpenses] = useState();
    const [total_funds, setTotalFunds] = useState();
+   const [donations, setDonations] = useState();
    const chapter = localStorage.getItem('chapter');
 
    const COLORS = ['darkgrey', '#d91b5c'];
@@ -67,19 +68,21 @@ const PresDashboard = () => {
          if (response) {
             setTotalFunds(response.data[0].total_funds);
             setExpenses(response.data[0].expenses);
+            setDonations(response.data[0].donations);
          }
       });
    });
+   const data01 = [{ name: 'NO DATA YET', value: 100 }];
 
    return (
       <div>
          <Navbar />
-         <div className="container mt-5">
+         <div className="container main">
             {/* <div className="bg-pink p-3 rounded fs-4 text-white ps-4 mb-4 mt-2 container">
                DASHBOARD
             </div> */}
             <div class="row d-flex justify-content-center">
-               <div class="col-lg-4">
+               <div class="col-lg">
                   <Card
                      title="Total no. of embers"
                      imageUrl=""
@@ -88,7 +91,7 @@ const PresDashboard = () => {
                   />
                </div>
                {}
-               <div class="col-lg-4">
+               <div class="col-lg">
                   <Card
                      title="Fund Balance "
                      imageUrl=""
@@ -96,15 +99,22 @@ const PresDashboard = () => {
                      body={total_funds + ' php'}
                   />
                </div>
-
-               <div class="col-lg-4">
+               <div class="col-lg">
+                  <Card
+                     title="Expenses"
+                     imageUrl=""
+                     className="bg-dark mb-4 shadow-sm "
+                     body={donations + ' php'}
+                  />
+               </div>{' '}
+               <div class="col-lg">
                   <Card
                      title="Expenses"
                      imageUrl=""
                      className="bg-dark mb-4 shadow-sm "
                      body={expenses + ' php'}
                   />
-               </div>
+               </div>{' '}
             </div>
             <div class="container">
                <div className="row">
@@ -112,28 +122,46 @@ const PresDashboard = () => {
                      <h4>Attendance graph for all events</h4>
                      <br />
                      <div style={{ width: '100%', height: 300 }}>
-                        <ResponsiveContainer>
-                           <PieChart>
-                              <Pie
-                                 dataKey="attendees"
-                                 data={data}
-                                 nameKey="status"
-                                 label
-                              >
-                                 {data.map((entry, index) => (
-                                    <Cell
-                                       fill={COLORS[index % COLORS.length]}
-                                    />
-                                 ))}
-                              </Pie>
-                              <Tooltip />
-                              <Legend
-                                 layout="horizontal"
-                                 verticalAlign="bottom"
-                                 align="center"
-                              />
-                           </PieChart>
-                        </ResponsiveContainer>
+                        {data.length === 0 ? (
+                           <ResponsiveContainer>
+                              <PieChart width={400} height={400}>
+                                 <Pie
+                                    dataKey="value"
+                                    isAnimationActive={false}
+                                    data={data01}
+                                    fill="gray"
+                                 />
+                                 <Legend
+                                    layout="horizontal"
+                                    verticalAlign="bottom"
+                                    align="center"
+                                 />
+                              </PieChart>
+                           </ResponsiveContainer>
+                        ) : (
+                           <ResponsiveContainer>
+                              <PieChart>
+                                 <Pie
+                                    dataKey="attendees"
+                                    data={data}
+                                    nameKey="status"
+                                    label
+                                 >
+                                    {data.map((entry, index) => (
+                                       <Cell
+                                          fill={COLORS[index % COLORS.length]}
+                                       />
+                                    ))}
+                                 </Pie>
+                                 <Tooltip />
+                                 <Legend
+                                    layout="horizontal"
+                                    verticalAlign="bottom"
+                                    align="center"
+                                 />
+                              </PieChart>
+                           </ResponsiveContainer>
+                        )}
                      </div>
                   </div>
 

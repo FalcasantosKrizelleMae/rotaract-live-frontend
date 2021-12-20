@@ -58,7 +58,7 @@ class Header extends Component {
 
                <Menu.Item key="profile" icon={<AiIcons.AiOutlineUser />}>
                   <Link
-                     to={{ pathname: `/profile/${member_id}` }}
+                     to={{ pathname: `/profile-member/${member_id}` }}
                      className="text-decoration-none"
                   >
                      Profile

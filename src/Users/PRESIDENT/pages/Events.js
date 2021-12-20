@@ -109,6 +109,7 @@ const SectEvent = () => {
                   <thead className="text-center text-white bg-pink text-uppercase">
                      <td>Event Name</td>
                      <td>Event Date/Time</td>
+                     <td>Participants</td>
                      <td>Status</td>
                      <td>Action</td>
                   </thead>
@@ -123,6 +124,9 @@ const SectEvent = () => {
                                     row.start,
                                     'ddd, mmmm dS, yyyy, h:MM TT'
                                  )}
+                              </td>
+                              <td>
+                                 <b>{row.participants}</b>
                               </td>
                               <td>
                                  {row.status === 'cancelled' ? (
@@ -148,15 +152,6 @@ const SectEvent = () => {
                                  {row.status === 'pending' ? (
                                     <>
                                        <Button
-                                          variant="white"
-                                          data-tip
-                                          data-for="view"
-                                          className="text-primary"
-                                       >
-                                          <AiIcons.AiFillEye />
-                                       </Button>
-
-                                       <Button
                                           className="me-2"
                                           variant="success"
                                           onClick={() => {
@@ -180,16 +175,7 @@ const SectEvent = () => {
                                        </Button>
                                     </>
                                  ) : row.status === 'accepted' ? (
-                                    <b>
-                                       <Button
-                                          variant="white"
-                                          data-tip
-                                          data-for="view"
-                                          className="text-primary"
-                                       >
-                                          <AiIcons.AiFillEye />
-                                       </Button>
-                                    </b>
+                                    <b>--</b>
                                  ) : (
                                     <b>--</b>
                                  )}

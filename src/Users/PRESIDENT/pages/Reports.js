@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import Navbar from '../components/Navbar';
 import * as AiIcons from 'react-icons/ai';
-import { Button, Table } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import moment from 'moment';
+import { Button } from 'antd';
 import Swal from 'sweetalert2';
+import { useHistory } from 'react-router-dom';
 
 const Reports = () => {
+   let history = useHistory();
    const [list, setList] = useState([]);
 
    //Display all data
@@ -146,14 +149,18 @@ const Reports = () => {
                                     <td>N/A</td>
                                     <td>
                                        <Button
-                                          variant="white"
-                                          data-tip
-                                          data-for="view"
-                                          className="text-primary"
+                                          size="sm"
+                                          onClick={() =>
+                                             history.push({
+                                                pathname: `/send`,
+                                                state: {
+                                                   event_id: val.event_id,
+                                                },
+                                             })
+                                          }
                                        >
-                                          <AiIcons.AiFillEye />
-                                       </Button>
-
+                                          View report
+                                       </Button>{' '}
                                        <Button
                                           onClick={() => {
                                              accept(val.report_id);
@@ -161,7 +168,6 @@ const Reports = () => {
                                        >
                                           <AiIcons.AiFillCheckCircle />
                                        </Button>
-
                                        <Button
                                           variant="danger"
                                           data-tip
@@ -190,13 +196,18 @@ const Reports = () => {
                                     <td>N/A</td>
                                     <td>
                                        <Button
-                                          variant="white"
-                                          data-tip
-                                          data-for="view"
-                                          className="text-primary"
+                                          size="sm"
+                                          onClick={() =>
+                                             history.push({
+                                                pathname: `/send`,
+                                                state: {
+                                                   event_id: val.event_id,
+                                                },
+                                             })
+                                          }
                                        >
-                                          <AiIcons.AiFillEye />
-                                       </Button>
+                                          View report
+                                       </Button>{' '}
                                     </td>
                                  </>
                               )}

@@ -53,9 +53,8 @@ const Donate = () => {
                            }}
                            amount={amount}
                            onSuccess={(details, data) => {
-                              console.log(details);
                               Axios.post(
-                                 'http://localhost:5000/donations/save_donation',
+                                 'https://rotaractzc-backend.herokuapp.com/donations/save_donation',
                                  {
                                     details: details,
                                     chapter: chapter,
@@ -63,12 +62,9 @@ const Donate = () => {
                                  }
                               ).then((response) => {
                                  if (response) {
-                                    alert(
-                                       'Donation complete! Thank you for donation us ' +
-                                          details.payer.name.given_name
-                                    );
+                                    history.push('/success-donation');
                                  } else {
-                                    alert('error');
+                                    alert('Connection error');
                                  }
                               });
                            }}

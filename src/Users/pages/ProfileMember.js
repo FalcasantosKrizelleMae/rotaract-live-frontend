@@ -47,27 +47,30 @@ function Profile() {
    };
 
    useEffect(() => {
-      Axios.get(`http://localhost:5000/auth/get_user/${id}`).then(
-         (response) => {
-            if (response) {
-               setList(response.data);
-            }
+      Axios.get(
+         `https://rotaractzc-backend.herokuapp.com/auth/get_user/${id}`
+      ).then((response) => {
+         if (response) {
+            setList(response.data);
          }
-      );
-      Axios.get(`http://localhost:5000/payment/get_payment/${chapter}`).then(
-         (response) => {
-            if (response) {
-               // console.log(response.data);
-               setDataList(response.data);
-            }
+      });
+      Axios.get(
+         `https://rotaractzc-backend.herokuapp.com/payment/get_payment/${chapter}`
+      ).then((response) => {
+         if (response) {
+            // console.log(response.data);
+            setDataList(response.data);
          }
-      );
+      });
 
-      Axios.get(`http://localhost:5000/payment/get_transaction`, {
-         params: {
-            member_id: id,
-         },
-      })
+      Axios.get(
+         `https://rotaractzc-backend.herokuapp.com/payment/get_transaction`,
+         {
+            params: {
+               member_id: id,
+            },
+         }
+      )
          .then((response) => {
             if (response) {
                // console.log(response.data);
@@ -83,10 +86,10 @@ function Profile() {
          key: 'account',
          tab: 'Account',
       },
-      // {
-      //    key: 'history',
-      //    tab: 'Payment History',
-      // },
+      {
+         key: 'history',
+         tab: 'Payment History',
+      },
    ];
 
    const [isHidden, setHidden] = useState(true);
@@ -183,11 +186,11 @@ function Profile() {
             </div>
          </div>
       ),
-      // history: (
-      //    <>
-      //       <Table dataSource={payments} columns={columns} />
-      //    </>
-      // ),
+      history: (
+         <>
+            <Table dataSource={payments} columns={columns} />
+         </>
+      ),
    };
 
    const [activeTabKey, setActiveTabKey] = useState('account');
@@ -244,6 +247,51 @@ function Profile() {
                   </Card>
                </div>
                <div className="col shadow-sm px-4 py-0 mt-0">
+                  <div className="container  rounded p-4">
+                     {list.map((item) => {
+                        return (
+                           <>
+                              <div className="">
+                                 <h6>BALANCE: {''} </h6>
+                                 <br />
+
+                                 <h2>{bal} php</h2>
+                              </div>
+
+                              {bal === '0' ? (
+                                 ' '
+                              ) : (
+                                 <Button
+                                    className="float-end"
+                                    type="primary"
+                                    onClick={() => {
+                                       history.push('/pay-mem');
+                                    }}
+                                 >
+                                    Pay now
+                                 </Button>
+                              )}
+                           </>
+                        );
+                     })}
+                     {dataList.map((item) => {
+                        return (
+                           <h6 className="mt-5">
+                              Payment for this month ({moment().format('MMMM')}
+                              ): <br />
+                              <h6> {item.amount} php</h6>
+                              <br />
+                              <div className="text-danger fs-6">
+                                 Due Date: <br />
+                                 {moment(item.due_date).format('llll')}
+                              </div>
+                              <br />
+                              <br />
+                           </h6>
+                        );
+                     })}
+                  </div>
+
                   <Card
                      className="rounded shadow-sm"
                      style={{ width: '100%', marginTop: 20 }}

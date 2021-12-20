@@ -117,7 +117,7 @@ const Accounts = () => {
    //Display all data
    useEffect(() => {
       Axios.get(
-         `https://rotaractzc-backend.herokuapp.com/admin/list/${chapter}`
+         `https://rotaractzc-backend.herokuapp.com/sect/allList/${chapter}`
       ).then((response) => {
          if (response) {
             setList(response.data);

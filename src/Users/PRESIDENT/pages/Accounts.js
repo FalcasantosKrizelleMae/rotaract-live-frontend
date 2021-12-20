@@ -15,7 +15,7 @@ const Accounts = () => {
    //Display all data
    useEffect(() => {
       Axios.get(
-         `https://rotaractzc-backend.herokuapp.com/admin/list/${chapter}`
+         `https://rotaractzc-backend.herokuapp.com/sect/allList/${chapter}`
       ).then((response) => {
          if (response) {
             setList(response.data);
@@ -41,7 +41,7 @@ const Accounts = () => {
                      <h6>{chapter}</h6>
                   </div>
                </div>
-               <Table responsive="lg" className="">
+               <Table responsive="lg" className="border">
                   <thead height="60" className="bg-pink text-white">
                      <tr>
                         <th>Member ID</th>

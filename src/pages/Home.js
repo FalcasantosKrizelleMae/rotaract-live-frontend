@@ -105,7 +105,7 @@ function Home() {
                         Explore{' '}
                      </a>
                      &nbsp; &nbsp;
-                     <Link to="/about" className="btn bg-light px-3 text-pink">
+                     <Link to="/member" className="btn bg-light px-3 text-pink">
                         {' '}
                         Pay Now <BiIcons.BiRightArrowAlt />
                      </Link>

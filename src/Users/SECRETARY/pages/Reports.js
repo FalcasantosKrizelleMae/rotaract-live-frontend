@@ -68,6 +68,7 @@ const Reports = () => {
                         <td>status</td>
                         <td>Date Requested</td>
                         <td>Date Reviewed</td>
+                        <td>Date Sent</td>
                         <td>Action</td>
                      </tr>
                   </thead>
@@ -98,7 +99,20 @@ const Reports = () => {
                               {val.status === 'requested' ? (
                                  <>
                                     <td>N/A</td>
-                                    <td>N/A</td>
+                                    <td>N/A</td>{' '}
+                                    <Button
+                                       size="sm"
+                                       onClick={() =>
+                                          history.push({
+                                             pathname: `/send`,
+                                             state: {
+                                                event_id: val.event_id,
+                                             },
+                                          })
+                                       }
+                                    >
+                                       View report
+                                    </Button>{' '}
                                  </>
                               ) : val.status === 'sent' ? (
                                  <>
@@ -106,6 +120,9 @@ const Reports = () => {
                                        {moment(val.date_reviewed).format(
                                           'llll'
                                        )}
+                                    </td>
+                                    <td>
+                                       {moment(val.date_sent).format('llll')}
                                     </td>
 
                                     <td>---</td>
@@ -117,6 +134,7 @@ const Reports = () => {
                                           'llll'
                                        )}
                                     </td>
+                                    <td>N/A</td>
 
                                     <td>
                                        {''}
@@ -136,7 +154,9 @@ const Reports = () => {
                                        <Button
                                           type="primary"
                                           size="sm"
-                                          onClick={sent(val.report_id)}
+                                          onClick={() => {
+                                             sent(val.report_id);
+                                          }}
                                        >
                                           Sent
                                        </Button>

@@ -13,23 +13,12 @@ const AdminRoute = ({ component: Component, ...rest }) => {
             if (auth && role === 'admin') {
                return (
                   <>
-                     {' '}
-                     <Redirect
-                        to={{
-                           pathname: '/admin',
-                        }}
-                     />
                      <Component {...props} />;
                   </>
                );
             } else if (role === 'admin') {
                return (
                   <>
-                     <Redirect
-                        to={{
-                           pathname: '/admin',
-                        }}
-                     />
                      <Component {...props} />;
                   </>
                );

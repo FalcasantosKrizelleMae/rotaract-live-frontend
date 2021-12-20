@@ -27,8 +27,10 @@ import PresDashboard from './Users/PRESIDENT/pages/Dashboard';
 import Transactions from './Users/MEMBER/pages/Transactions';
 import MemEvents from './Users/MEMBER/pages/Events';
 import Profile from './Users/pages/Profile';
+import ProfileMember from './Users/pages/ProfileMember';
 import Payments from './Users/FINANCE/pages/Payments';
 import Member from './Users/MEMBER';
+
 import FinEvents from './Users/FINANCE/pages/Events';
 
 import Payment from './Users/pages/Payment';
@@ -56,6 +58,8 @@ import DonateUz from './Clubs/UZ/pages/Donate';
 import PresReports from './Users/PRESIDENT/pages/Reports';
 import Send from './Users/SECRETARY/pages/Send';
 import Mail from './Users/SECRETARY/pages/Mail';
+import SuccessDonation from './pages/SuccessDonation';
+import Protected from './Protected';
 
 function App() {
    return (
@@ -73,14 +77,15 @@ function App() {
                   component={() => <Payment authorized={true} />}
                ></Route>
                <Route path="/success" component={Success}></Route>
+               <Route
+                  path="/success-donation"
+                  component={SuccessDonation}
+               ></Route>
             </Switch>
 
-            <Route path="/secretary" component={() => <Secretary />} />
-
-            <Route path="/finance" component={() => <Finance />} />
-
-            <Route path="/president" component={() => <President />} />
-            <Route path="/member" component={() => <Member />} />
+            <Route path="/member">
+               <Protected Cmp={Member} />
+            </Route>
 
             {/* DONATE */}
             <Route path="/donate-west" component={() => <DonateWest />} />
@@ -105,19 +110,22 @@ function App() {
             {/* <Route path="/accounts" component={Accounts}></Route> */}
             {/* <Route path="/profile-admin" component={11207961}></Route> */}
 
-            <Route path="/pres/events" component={PresEvents}></Route>
-
             {/* ADMIN */}
-            <AdminRoute path="/admin" component={Dashboard} />
+            <AdminRoute path="/admin" component={Dashboard}></AdminRoute>
 
-            <Route path="/accounts" component={Accounts}></Route>
-            <Route path="/admin-profile" component={ProfileAdmin}></Route>
-            <Route path="/admin-events" component={Events}></Route>
-            <Route path="/admin-funds" component={Funds}></Route>
+            <AdminRoute path="/accounts" component={Accounts}></AdminRoute>
+            <AdminRoute
+               path="/admin-profile"
+               component={ProfileAdmin}
+            ></AdminRoute>
+            <AdminRoute path="/admin-events" component={Events}></AdminRoute>
+            <AdminRoute path="/admin-funds" component={Funds}></AdminRoute>
 
             {/* SECRETARY */}
             <Route path="/sect-events" component={SectEvents}></Route>
-            <Route path="/secretary" component={SectDashboard}></Route>
+            <Route path="/secretary">
+               <Protected Cmp={SectDashboard} />
+            </Route>
             <Route path="/sect/scan" component={Scan}></Route>
             <Route path="/sect/attendance" component={Attendance}></Route>
             <Route path="/sect-accounts" component={SectAccounts}></Route>
@@ -125,11 +133,12 @@ function App() {
             <Route path="/sect/manual" component={Manual}></Route>
             <Route path="/send" component={Send}></Route>
             <Route path="/send-to-mail" component={Mail}></Route>
-            <Route path="/attendance" component={AttendanceList}></Route>
 
             {/* PRESIDENT */}
             <Route path="/pres-events" component={PresEvents}></Route>
-            <Route path="/president" component={PresDashboard}></Route>
+            <Route path="/president">
+               <Protected Cmp={PresDashboard} />
+            </Route>
             <Route path="/pres-accounts" component={PresAccounts}></Route>
             <Route path="/pres-reports" component={PresReports}></Route>
 
@@ -137,11 +146,16 @@ function App() {
             <Route path="/transaction" component={Transactions}></Route>
             <Route path="/Events" component={MemEvents}></Route>
             <Route path="/profile" component={Profile}></Route>
+            <Route path="/profile-member" component={ProfileMember}></Route>
 
             {/* FINANCE */}
             <Route path="/payments" component={Payments}></Route>
+            <Route path="/attendance" component={AttendanceList}></Route>
             <Route path="/pay-mem" component={Payment}></Route>
             <Route path="/finance-events" component={FinEvents}></Route>
+            <Route path="/finance">
+               <Protected Cmp={Finance} />
+            </Route>
          </Router>
       </div>
    );

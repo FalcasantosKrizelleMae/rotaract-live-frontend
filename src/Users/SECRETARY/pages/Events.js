@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Button, Modal, Form, Container } from 'react-bootstrap';
+import { Table, Modal, Form, Container } from 'react-bootstrap';
 import ReactTooltip from 'react-tooltip';
 import Axios from 'axios';
 import { useHistory, Link } from 'react-router-dom';
@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 import { useForm } from 'react-hook-form';
 import dateFormat from 'dateformat';
 import Navbar from '../components/Navbar';
-import { Dropdown, Menu } from 'antd';
+import { Dropdown, Menu, Button } from 'antd';
 
 const SectEvent = () => {
    const chapter = localStorage.getItem('chapter');
@@ -92,7 +92,6 @@ const SectEvent = () => {
          host: host,
          venue: venue,
          source: source,
-         total: total,
          email: email,
          chairperson: chairperson,
          preparedby: preparedby,
@@ -278,14 +277,14 @@ const SectEvent = () => {
                               <td>
                                  {row.status === 'pending' ? (
                                     <>
-                                       <Button
+                                       {/* <Button
                                           variant="white"
                                           data-tip
                                           data-for="view"
                                           className="text-dark"
                                        >
                                           <AiIcons.AiFillEye />
-                                       </Button>
+                                       </Button> */}
 
                                        <Button
                                           variant="white"
@@ -300,21 +299,21 @@ const SectEvent = () => {
                                     </>
                                  ) : row.status === 'accepted' ? (
                                     <>
-                                       <Button
+                                       {/* <Button
                                           variant="white"
                                           data-tip
                                           data-for="view"
                                           className="text-primary me-3"
                                        >
                                           <AiIcons.AiFillEye />
-                                       </Button>
+                                       </Button> */}
 
                                        <Button
-                                          variant="white"
+                                          type="outline"
                                           onClick={() => {
                                              add_report(row.event_id);
                                           }}
-                                          className="text-success me-3"
+                                          className=" me-3"
                                        >
                                           Done
                                        </Button>
@@ -568,29 +567,18 @@ const SectEvent = () => {
                         </>
                      ) : (
                         <>
-                           <div className="row">
-                              <Form.Group className="mb-4 col">
-                                 <select
-                                    className="form-select"
-                                    name="source"
-                                    onChange={(e) => setSource(e.target.value)}
-                                    required
-                                 >
-                                    <option value="">Select Source</option>
-                                    <option value="Funds">Club Funds</option>
-                                    <option value="Donation">Donation</option>
-                                 </select>
-                              </Form.Group>
-                              <Form.Group className="mb-4 col-sm-4">
-                                 <input
-                                    className="form-control"
-                                    type="number"
-                                    placeholder="Total cost"
-                                    onChange={(e) => setTotal(e.target.value)}
-                                    required
-                                 />
-                              </Form.Group>
-                           </div>
+                           <Form.Group className="mb-4 col">
+                              <select
+                                 className="form-select"
+                                 name="source"
+                                 onChange={(e) => setSource(e.target.value)}
+                                 required
+                              >
+                                 <option value="">Select Source</option>
+                                 <option value="Funds">Club Funds</option>
+                                 <option value="Donation">Donation</option>
+                              </select>
+                           </Form.Group>
 
                            <div className="row">
                               <Form.Group className="mb-4 col">

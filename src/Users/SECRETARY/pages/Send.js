@@ -39,9 +39,7 @@ const Send = () => {
                title="Back to Reports"
                subTitle={chapter}
             />{' '}
-            <div className="my-3 col text-uppercase fs-5 mb-5">
-               Send reports
-            </div>
+            <div className="my-3 col text-uppercase fs-5 mb-5">View report</div>
             {/* PDF */}
             <div className="">
                <Pdf targetRef={ref} filename={filename}>

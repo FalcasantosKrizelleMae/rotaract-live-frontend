@@ -26,6 +26,7 @@ function Login() {
             setStatus(response.data.message);
          } else {
             localStorage.setItem('auth', true);
+            localStorage.setItem('log_status', true);
 
             if (response.data.role === 'Member') {
                localStorage.setItem('member_id', member_id);
